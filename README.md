@@ -1,2 +1,2 @@
-# Pinamax - Mobile Application
+# Revealin - Mobile Application
 (WIP)
