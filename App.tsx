@@ -7,11 +7,11 @@
  */
 
 import React from 'react';
-import { PageAuthentication } from './src/features/authentication/authentication';
+import { PageAuthentication, PageCreateAccount, PageAccount } from './src/features/authentication/authentication';
 
 const App: () => React$Node = () => {
   return (
-    <PageAuthentication />
+    <PageCreateAccount />
   );
 };
 
