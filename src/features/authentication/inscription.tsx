@@ -67,8 +67,7 @@ class CreateBaseAccount extends Component {
 
 class CreateProfilAccount extends Component {
     render() {
-        return (             
-            <>            
+        return (          
             <View style={Styles.sectionContainer}>
                 <Text style={Styles.title}>Personnalisez votre profil</Text> 
                 <View style={Styles.separator} />  
@@ -106,9 +105,6 @@ class CreateProfilAccount extends Component {
                     onPress={() => Alert.alert('Passe à la page suivante.')}
                 />    
             </View>
-              
-            
-            </>
         )
     } 
 }

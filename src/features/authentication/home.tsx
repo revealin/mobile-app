@@ -28,20 +28,18 @@ class TitleAuthentication extends Component {
 
 class ButtonConnect extends Component {
     render() {
-        return (
-            <>          
+        return (       
                 <View style={{flex: 3, marginLeft: 30, marginRight: 30, marginBottom: 100}}>
                     <Button
                         title="Se connecter"
                         onPress={() => Alert.alert('connect')}
                     />
-                <View style={Styles.separator} />
+                    <View style={Styles.separator} />
                     <Button
                         title="S'inscrire"
                         onPress={() => Alert.alert('incription')}
                     />
                 </View>
-            </>
         )        
     }  
 }
