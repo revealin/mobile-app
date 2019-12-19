@@ -10,7 +10,6 @@ const MainRouter = createStackNavigator(
     {
         Main: PageAuthentication,
         ModifyUserProfile: ModifyUserProfile
-
     },
     {
         initialRouteName: "ModifyUserProfile"
