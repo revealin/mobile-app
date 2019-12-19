@@ -4,16 +4,17 @@ import { Colors} from 'react-native/Libraries/NewAppScreen';
 export const Styles = StyleSheet.create({    
     body: {                 
         flex: 1, 
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.white,   
     },
     sectionContainer: {  
         flex: 2, 
-        justifyContent: 'center',
-        alignItems: 'center',  
         marginTop: 32,
         paddingHorizontal: 24,
+        backgroundColor: Colors.blue,
     },
     title: {
+        justifyContent: 'center',
+        alignItems: 'center',  
         fontSize: 24,
         fontWeight: '600',
         color: Colors.black,

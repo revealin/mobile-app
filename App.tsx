@@ -7,11 +7,13 @@
  */
 
 import React from 'react';
-import { PageAuthentication, PageCreateAccount, PageAccount } from './src/features/authentication/authentication';
+import { AuthenticationPage } from './src/features/authentication/home';
+import { ConnexionAccountPage } from './src/features/authentication/connexion';
+import { CreateAccountPage } from './src/features/authentication/inscription';
 
 const App: () => React$Node = () => {
   return (
-    <PageCreateAccount />
+    <AuthenticationPage />
   );
 };
 
