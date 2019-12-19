@@ -9,7 +9,7 @@ export const AuthenticationStyles = StyleSheet.create({
         right: 0,
     },
     highlight: {
-        fontWeight: '700',<)
+        fontWeight: '700',
     },
     footer: {
         color: Colors.dark,
