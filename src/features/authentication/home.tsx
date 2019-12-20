@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, Button, Alert } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import { Styles } from '../../styles/style';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 /*
     CONNEXION || INSCRIPTION
@@ -20,32 +22,40 @@ export class AuthenticationPage extends Component {
     }   
 }
  
-class TitleAuthentication extends Component {
-    render() {
-        return (
-            <View style={Styles.sectionContainer}>
-                <Text style={Styles.title}>Reveal In</Text>              
-            </View>
-        )        
-    }  
-}
+const TitleAuthentication: React.FC = () => (    
+    <View style={Styles.sectionContainer}>
+        <Text style={Styles.title}>RevealIn</Text>              
+    </View>
+)  
 
-class ButtonConnect extends Component {
-    render() {
-        return (       
-                <View style={{flex: 3, marginLeft: 30, marginRight: 30, marginBottom: 100}}>
-                    <Button
-                        title="Se connecter"
-                        onPress={() => this.props.navigation.navigate('Connection')}
-                    />
-                    <View style={Styles.separator} />
-                    <Button
-                        title="S'inscrire"
-                        onPress={() => this.props.navigation.navigate('Register')}
-                    />
-                </View>
-        )        
-    }  
-}
+const ButtonConnect: React.FC = () => (  
+    <View style={{flex: 3, marginLeft: 30, marginRight: 30, marginBottom: 100}}>                    
+        <LinearGradient 
+            colors={['#abe28e', '#e1f59a']} 
+            style={Styles.linearGradientButton}>
+            <Text 
+                style={Styles.buttonText}  
+                onPress={() => Alert.alert('Connecter.')}>
+                Se connecter
+            </Text>
+        </LinearGradient>
+        <View style={Styles.separator} />
+        <LinearGradient 
+            colors={['#abe28e', '#e1f59a']} 
+            style={Styles.linearGradientButton}>
+            <Text 
+                style={Styles.buttonText} 
+                onPress={() => Alert.alert('Je me suis inscris/.')}>
+                S'incrire
+            </Text>                    
+        </LinearGradient>  
+        <View style={Styles.separator} />
+        {/* <LinearGradient colors={['#abe28e', '#e1f59a']} style={Styles.linearGradientIcon}>
+            <Icon                        
+                name="user-astronaut" size={20} color="#A6A6A6"
+                onPress={() => console.log('hello')} />  
+        </LinearGradient>                                       */}
+    </View>
+)  
 
 
