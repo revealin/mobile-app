@@ -7,10 +7,14 @@ import { Styles } from '../../styles/style';
     CONNEXION
 */
 export class ConnexionAccountPage extends Component {
+    static navigationOptions = {
+        header: null
+    };
+
     render() {
         return (            
             <View style={Styles.body}>
-                <ConnexionAccount />
+                <ConnexionAccount navigation={this.props.navigation}/>
             </View>
         )
     }   
@@ -44,6 +48,12 @@ class ConnexionAccount extends Component {
                     title="Valider"
                     onPress={() => Alert.alert('Left button pressed')}
                 />    
+                <Text
+                    onPress={() => this.props.navigation.navigate("Register")}
+                    style={Styles.switchLink}
+                >
+                    Créer un compte
+                </Text>
             </View>
             </>
         )

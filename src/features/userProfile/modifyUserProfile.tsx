@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropsWithChildren } from 'react';
 import { View, Text, TextInput, Button, TouchableOpacity, FlatList, Image } from 'react-native';
 import { UserProfileStyles } from '../../styles/userProfile/style';
 
@@ -16,7 +16,7 @@ const DATA = [
     {
       id: '58694a0f-3da1-471f-bd96-145571e29d72',
       title: 'Third Item',
-
+      link: 'https://www.supinfo.com/articles/resources/204633/7729/0.jpg',
     },
 ];
 
@@ -60,7 +60,7 @@ class Photos extends Component {
     render() {
         return (
             <View style={[UserProfileStyles.photos, UserProfileStyles.paddingLR]}>
-                <Text>Photos</Text>
+                <Text style={ UserProfileStyles.photoTitle }>Photos</Text>
                 <View>
                     <FlatList
                         style={UserProfileStyles.photosList}
@@ -68,7 +68,7 @@ class Photos extends Component {
                         data={DATA}
                         initialNumToRender={3}
                         renderItem={({ item }) => {
-                            if (item.link) {
+                            if (item.link && typeof item.link === 'string') {
                                return <DisplayPhotos base64Code={item.link} />
                             } else {
                                 return <EmptyPhoto />
@@ -89,6 +89,7 @@ class ProblemReport extends Component {
                 <Button 
                     title="SIGNALER UN PROBLEME"
                     color="#DB524C"
+                    onPress={() => alert('tt')}
                 />
             </View>
         )
@@ -103,11 +104,11 @@ const EmptyPhoto: React.FC = () => (
     </View>
 )
 
-const DisplayPhotos: React.FC = ({ base64Code }) => (
+const DisplayPhotos: React.FC<any> = ({ base64Code }) => (
     <View style={UserProfileStyles.photoView}>
-        <Image 
+        <Image
             style={UserProfileStyles.photo}
-            source={{ uri: base64Code}}
+            source={{ uri: base64Code }}
         />
     </View>
 )

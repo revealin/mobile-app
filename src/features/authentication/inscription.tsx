@@ -7,12 +7,16 @@ import { Styles } from '../../styles/style';
     CREATE ACCOUNT
 */
 export class CreateAccountPage extends Component {
+    static navigationOptions = {
+        header: null
+    };
+
     render() {
         return (            
             <View style={Styles.body}>
                 {/* <CreateBaseAccount /> */}
-                <CreateProfilAccount />
-                <CreatePictureAccount />
+                <CreateProfilAccount navigation={this.props.navigation}/>
+                <CreatePictureAccount navigation={this.props.navigation}/>
             </View>
         )
     }   
@@ -58,7 +62,10 @@ class CreateBaseAccount extends Component {
                 <Button
                     title="Valider"
                     onPress={() => Alert.alert('Left button pressed')}
-                />    
+                />
+                <Text onPress={() => this.props.navigation.navigate("Connection")}>
+                    Me connecter
+                </Text>
             </View>
             </>
         )
@@ -103,7 +110,13 @@ class CreateProfilAccount extends Component {
                 <Button
                     title="Suivant"
                     onPress={() => Alert.alert('Passe à la page suivante.')}
-                />    
+                />
+                <Text
+                    onPress={() => this.props.navigation.navigate("Register")}
+                    style={Styles.switchLink}
+                >
+                    Me connecter
+                </Text>
             </View>
         )
     } 
@@ -127,6 +140,12 @@ class CreatePictureAccount extends Component {
                     title="Suivant"
                     onPress={() => Alert.alert('Passe à la page suivante.')}
                 />  
+                <Text
+                    onPress={() => this.props.navigation.navigate("Register")}
+                    style={Styles.switchLink}
+                >
+                    Me connecter
+                </Text>
             </View>
             </>
         )

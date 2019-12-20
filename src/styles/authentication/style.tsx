@@ -19,6 +19,11 @@ export const AuthenticationStyles = StyleSheet.create({
         paddingRight: 12,
         textAlign: 'right',
     },
+    switchLink: {
+        marginTop: 15,
+        color: 'blue',
+        textDecorationLine: 'underline'
+    }
   });
 
 export const TriangleCorner = StyleSheet.create({ 

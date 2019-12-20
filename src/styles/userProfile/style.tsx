@@ -38,14 +38,23 @@ export const UserProfileStyles = StyleSheet.create({
         paddingLeft: 30,
         paddingRight: 30 
     },
+    photoTitle: {
+        marginBottom: 10
+    },
     photosList: {
         flexDirection: 'column',
     },
     photoView: {
         flex: 1,
+        marginLeft: 5
     },
     photo: {
         width: 90,
         height: 170
+    },
+    switchLink: {
+        marginTop: 15,
+        color: 'blue',
+        textDecorationLine: 'underline'
     }
 });
