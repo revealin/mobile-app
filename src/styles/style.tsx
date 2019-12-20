@@ -29,5 +29,10 @@ export const Styles = StyleSheet.create({
         marginVertical: 8,
         borderBottomColor: '#737373',
         borderBottomWidth: StyleSheet.hairlineWidth,
-      },
+    },
+    switchLink: {
+        marginTop: 15,
+        color: 'blue',
+        textDecorationLine: 'underline'
+    }
 });

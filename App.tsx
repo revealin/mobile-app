@@ -7,56 +7,12 @@
  */
 
 import React from 'react';
-import { AuthenticationPage } from './src/features/authentication/home';
-import { ConnexionAccountPage } from './src/features/authentication/connexion';
-import { CreateAccountPage } from './src/features/authentication/inscription';
+import MainRouter from './src/navigation/mainRouter';
 
 const App: () => React$Node = () => {
   return (
-    <AuthenticationPage />
+    <MainRouter />
   );
 };
 
 export default App;
-
- {/* <StatusBar barStyle="dark-content" /> */}
-//  <SafeAreaView>
-//  <ScrollView
-//    contentInsetAdjustmentBehavior="automatic"
-//    style={authenticationStyles.scrollView}>
-//    <Header /> 
-//      {global.HermesInternal == null ? null : (
-//      <View style={authenticationStyles.engine}>
-//        <Text style={authenticationStyles.footer}>Engine: Hermes</Text>
-//      </View>
-//    )}
-//    <View style={authenticationStyles.body}>
-//      <View style={authenticationStyles.sectionContainer}>
-//        <Text style={authenticationStyles.sectionTitle}>Reveal In</Text>
-//        <Text style={authenticationStyles.sectionDescription}>
-//          Edit <Text style={authenticationStyles.highlight}>App.js</Text> to change this
-//          screen and then come back to see your edits.
-//        </Text>
-//      </View>
-//      <View style={authenticationStyles.sectionContainer}>
-//        <Text style={authenticationStyles.sectionTitle}>See Your Changes</Text>
-//        <Text style={authenticationStyles.sectionDescription}>
-//          <ReloadInstructions />
-//        </Text>
-//      </View>
-//      <View style={authenticationStyles.sectionContainer}>
-//        <Text style={authenticationStyles.sectionTitle}>Debug</Text>
-//        <Text style={authenticationStyles.sectionDescription}>
-//          <DebugInstructions />
-//        </Text>
-//      </View>
-//      <View style={authenticationStyles.sectionContainer}>
-//        <Text style={authenticationStyles.sectionTitle}>Learn More</Text>
-//        <Text style={authenticationStyles.sectionDescription}>
-//          Read the docs to discover what to do next:
-//        </Text>
-//      </View> 
-//      <LearnMoreLinks /> 
-//    </View>
-//  </ScrollView>
-// </SafeAreaView>

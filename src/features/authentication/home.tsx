@@ -6,11 +6,15 @@ import { Styles } from '../../styles/style';
     CONNEXION || INSCRIPTION
 */
 export class AuthenticationPage extends Component {
+    static navigationOptions = {
+        header: null
+    };
+
     render() {
-        return (            
+        return (
             <View style={Styles.body}>
                 <TitleAuthentication />
-                <ButtonConnect />
+                <ButtonConnect navigation={this.props.navigation}/>
             </View>
         )
     }   
@@ -32,12 +36,12 @@ class ButtonConnect extends Component {
                 <View style={{flex: 3, marginLeft: 30, marginRight: 30, marginBottom: 100}}>
                     <Button
                         title="Se connecter"
-                        onPress={() => Alert.alert('connect')}
+                        onPress={() => this.props.navigation.navigate('Connection')}
                     />
                     <View style={Styles.separator} />
                     <Button
                         title="S'inscrire"
-                        onPress={() => Alert.alert('incription')}
+                        onPress={() => this.props.navigation.navigate('Register')}
                     />
                 </View>
         )        
