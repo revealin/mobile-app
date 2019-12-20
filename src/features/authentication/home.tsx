@@ -8,11 +8,15 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
     CONNEXION || INSCRIPTION
 */
 export class AuthenticationPage extends Component {
+    static navigationOptions = {
+        header: null
+    };
+
     render() {
-        return (            
+        return (
             <View style={Styles.body}>
                 <TitleAuthentication />
-                <ButtonConnect />                
+                <ButtonConnect navigation={this.props.navigation}/>
             </View>
         )
     }   

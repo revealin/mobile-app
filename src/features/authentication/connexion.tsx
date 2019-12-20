@@ -6,10 +6,14 @@ import { Styles } from '../../styles/style';
     CONNEXION
 */
 export class ConnexionAccountPage extends Component {
+    static navigationOptions = {
+        header: null
+    };
+
     render() {
         return (            
             <View style={Styles.body}>
-                <ConnexionAccount />
+                <ConnexionAccount navigation={this.props.navigation}/>
             </View>
         )
     }   

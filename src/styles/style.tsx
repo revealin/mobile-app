@@ -46,5 +46,10 @@ export const Styles = StyleSheet.create({
         margin: 10,
         color: '#ffffff',
         backgroundColor: 'transparent'
-      }
+      },
+    switchLink: {
+        marginTop: 15,
+        color: 'blue',
+        textDecorationLine: 'underline'
+    }
 });

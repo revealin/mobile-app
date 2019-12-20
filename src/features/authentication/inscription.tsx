@@ -7,12 +7,16 @@ import { Styles } from '../../styles/style';
     CREATE ACCOUNT
 */
 export class CreateAccountPage extends Component {
+    static navigationOptions = {
+        header: null
+    };
+
     render() {
         return (            
             <View style={Styles.body}>
                 {/* <CreateBaseAccount /> */}
-                <CreateProfilAccount />
-                <CreatePictureAccount />
+                <CreateProfilAccount navigation={this.props.navigation}/>
+                <CreatePictureAccount navigation={this.props.navigation}/>
             </View>
         )
     }   
@@ -109,13 +113,16 @@ const CreatePictureAccount: React.FC = () => (
             style={{width: 'auto', height: 550}}
             source={{uri: 'https://facebook.github.io/react-native/img/tiny_logo.png'}}
         />
-
         <View style={Styles.separator} />
-        
         <Button
             title="Suivant"
             onPress={() => Alert.alert('Passe à la page suivante.')}
         />  
+        <Text
+            onPress={() => this.props.navigation.navigate("Register")}
+            style={Styles.switchLink}
+        >
+            Me connecter
+        </Text>
     </View>
 )
- 
