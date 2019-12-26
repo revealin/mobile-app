@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, Button, Alert, CheckBox, Image } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import { ButtonGroup } from 'react-native-elements';
 import { Styles } from '../../styles/style';
 
@@ -14,34 +15,37 @@ export class CreateAccountPage extends Component {
     render() {
         return (            
             <View style={Styles.body}>
-                {/* <CreateBaseAccount /> */}
-                <CreateProfilAccount navigation={this.props.navigation}/>
-                <CreatePictureAccount navigation={this.props.navigation}/>
+                <TitleInscription />
+                <CreateBaseAccount navigation={this.props.navigation}/>
+                {/* <CreatePictureAccount navigation={this.props.navigation}/> */}
             </View>
         )
     }   
 }
 
+const TitleInscription: React.FC = () => (    
+    <View style={Styles.flexSecond}>
+        <Text style={Styles.title}>REVEALIN</Text>
+        <Text style={Styles.subTitle}>Créer un compte</Text>              
+    </View>
+)  
 const CreateBaseAccount: React.FC = () => (             
     <>
-        <View style={Styles.sectionContainer}>
-            <Text style={Styles.title}>Créer un compte</Text>              
-        </View>
-        <View style={{flex: 3, marginLeft: 30, marginRight: 30, marginBottom: 100}}>
-            <Text style={Styles.content}>Adresse e-mail:</Text>
+        <View style={Styles.flexThird}>
+            <Text style={Styles.label}>Adresse e-mail:</Text>
             <TextInput
                 style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
                 //   onChangeText={text => onChangeText(text)}
                 //   value={value}
             />
-            <Text style={Styles.content}>Mot de passe:</Text>
+            <Text style={Styles.label}>Mot de passe:</Text>
             <TextInput 
                 style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
                 //   onChangeText={text => onChangeText(text)}
                 //   value={value}
                 secureTextEntry={true}
             />
-            <Text style={Styles.content}>Confirmation du mot de passe:</Text>
+            <Text style={Styles.label}>Confirmation du mot de passe:</Text>
             <TextInput 
                 style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
                 //   onChangeText={text => onChangeText(text)}
@@ -51,16 +55,21 @@ const CreateBaseAccount: React.FC = () => (
 
             <View style={{flexDirection:'row', flexWrap:'wrap'}}>
                 <CheckBox />
-                <Text style={Styles.content}>J'accepte les termes...</Text>
+                <Text style={Styles.label}>J'accepte les termes...</Text>
             </View>
 
 
             {/* <View style={Styles.separator} /> */}
             
-            <Button
-                title="Valider"
-                onPress={() => Alert.alert('Left button pressed')}
-            />    
+            <LinearGradient 
+                colors={['#abe28e', '#e1f59a']} 
+                style={Styles.linearGradientButton}>
+                <Text 
+                    style={Styles.buttonText} 
+                    onPress={() => navigate('Register')}>
+                    Valider
+                </Text>                    
+            </LinearGradient>   
         </View>
     </>
 )

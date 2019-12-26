@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View, Text, Button, Alert } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { Styles } from '../../styles/style';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 
 /*
     CONNEXION || INSCRIPTION
@@ -23,19 +22,19 @@ export class AuthenticationPage extends Component {
 }
  
 const TitleAuthentication: React.FC = () => (    
-    <View style={Styles.sectionContainer}>
-        <Text style={Styles.title}>RevealIn</Text>              
+    <View style={Styles.flexSecond}>
+        <Text style={Styles.title}>REVEALIN</Text>              
     </View>
 )  
 
-const ButtonConnect: React.FC = () => (  
-    <View style={{flex: 3, marginLeft: 30, marginRight: 30, marginBottom: 100}}>                    
+const ButtonConnect: React.FC = () => (      
+    <View style={Styles.flexThird}>  
         <LinearGradient 
             colors={['#abe28e', '#e1f59a']} 
             style={Styles.linearGradientButton}>
             <Text 
                 style={Styles.buttonText}  
-                onPress={() => Alert.alert('Connecter.')}>
+                onPress={() => navigate('Connection')}>
                 Se connecter
             </Text>
         </LinearGradient>
@@ -45,7 +44,7 @@ const ButtonConnect: React.FC = () => (
             style={Styles.linearGradientButton}>
             <Text 
                 style={Styles.buttonText} 
-                onPress={() => Alert.alert('Je me suis inscris/.')}>
+                onPress={() => navigate('Register')}>
                 S'incrire
             </Text>                    
         </LinearGradient>  
