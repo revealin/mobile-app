@@ -6,28 +6,57 @@ export const Styles = StyleSheet.create({
         flex: 1, 
         backgroundColor: Colors.white   
     },
-    sectionContainer: {  
+    flexSecond: {  
         flex: 2, 
-        marginTop: 32,
-        paddingHorizontal: 24,
-        backgroundColor: Colors.blue,
-             
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: Colors.white,
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 5,
+        },
+        shadowOpacity: 1,
+        shadowRadius: 3.84,
+
+        elevation: 5,
+    },
+    flexThird: {
+      flex: 3, 
+      // Centrage du block flex 3 
+      marginLeft: 30, 
+      marginRight: 30, 
+      marginBottom: 100,
+      // Créer une + haute séparation entre le flex 2 et le flex 3
+      paddingTop: 150,
+      // backgroundColor: '#FFA500'
     },
     title: {
-        justifyContent: 'center',
-        alignItems: 'center',  
-        fontSize: 24,
-        fontWeight: '600',
-        color: Colors.black
+      justifyContent: 'center',
+      alignItems: 'center',
+      fontFamily: 'Roboto',
+      fontSize: 70,
+      fontWeight: 'bold',
+      color: '#bf78b2'         
     },
-    content: {
-        marginTop: 8,
-        fontSize: 18,
+    subTitle: {
+      fontSize: 24,
+      fontWeight: 'bold',
+    },
+    label: {
+       marginLeft: 10,
+        fontSize: 20,
         fontWeight: '400',
-        color: Colors.dark
+        color: '#bf78b2'
+    },
+    input: {
+      height: 40, 
+      borderColor: '#abe28e', 
+      borderWidth: 1
     },
     separator: {
-        marginVertical: 8,
+        marginVertical: 25,
         borderBottomColor: '#737373',
         borderBottomWidth: StyleSheet.hairlineWidth
       },
