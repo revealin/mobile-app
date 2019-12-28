@@ -2,11 +2,16 @@ import React, { Component } from 'react';
 import { View, Text, Button, Alert } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { Styles } from '../../styles/style';
+import { NavigationStackProp } from 'react-navigation-stack';
+
+type NavigateProp = {
+    navigation: NavigationStackProp
+};
 
 /*
     CONNEXION || INSCRIPTION
 */
-export class AuthenticationPage extends Component {
+export class AuthenticationPage extends Component<NavigateProp> {
     static navigationOptions = {
         header: null
     };
@@ -27,14 +32,14 @@ const TitleAuthentication: React.FC = () => (
     </View>
 )  
 
-const ButtonConnect: React.FC = () => (      
+const ButtonConnect: React.FC<NavigateProp> = (props) => (      
     <View style={Styles.flexThird}>  
         <LinearGradient 
             colors={['#abe28e', '#e1f59a']} 
             style={Styles.linearGradientButton}>
             <Text 
                 style={Styles.buttonText}  
-                onPress={() => navigate('Connection')}>
+                onPress={() => props.navigation.navigate('Connection')}>
                 Se connecter
             </Text>
         </LinearGradient>
@@ -44,7 +49,7 @@ const ButtonConnect: React.FC = () => (
             style={Styles.linearGradientButton}>
             <Text 
                 style={Styles.buttonText} 
-                onPress={() => navigate('Register')}>
+                onPress={() => props.navigation.navigate('Register')}>
                 S'incrire
             </Text>                    
         </LinearGradient>  
