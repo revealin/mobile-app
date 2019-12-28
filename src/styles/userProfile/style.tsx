@@ -15,17 +15,6 @@ export const UserProfileStyles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 18,
     },
-    description: {
-        flex: 3,
-        elevation: 3
-    },
-    descriptionView: {
-        marginTop: 10,
-        height: 130,
-        borderWidth: 0,
-        elevation: 1,
-        borderRadius: 20
-    },
     photos: {
         flex: 4,
     },
