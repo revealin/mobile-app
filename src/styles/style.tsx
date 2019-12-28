@@ -29,7 +29,6 @@ export const Styles = StyleSheet.create({
       marginRight: 30, 
       marginBottom: 100,
       // Créer une + haute séparation entre le flex 2 et le flex 3
-      paddingTop: 150,
       // backgroundColor: '#FFA500'
     },
     title: {
