@@ -1,5 +1,7 @@
-import React, { Component, PropsWithChildren } from 'react';
-import { View, Text, TextInput, Button, TouchableOpacity, FlatList, Image } from 'react-native';
+import React, { Component } from 'react';
+import { View, Text, Button, TouchableOpacity, FlatList, Image } from 'react-native';
+
+import { DescriptionComponent } from '../../shared/components/description'; 
 import { UserProfileStyles } from '../../styles/userProfile/style';
 
 const DATA = [
@@ -15,8 +17,7 @@ const DATA = [
     },
     {
       id: '58694a0f-3da1-471f-bd96-145571e29d72',
-      title: 'Third Item',
-      link: 'https://www.supinfo.com/articles/resources/204633/7729/0.jpg',
+      title: 'Third Item'
     },
 ];
 
@@ -28,29 +29,9 @@ export class ModifyUserProfile extends Component {
     render() {
         return (
             <View style={UserProfileStyles.body}>
-                <Description />
+                <DescriptionComponent />
                 <Photos />
                 <ProblemReport />
-            </View>
-        )
-    }
-}
-
-class Description extends Component {
-    render() {
-        return (
-            <View style={[UserProfileStyles.description, UserProfileStyles.paddingLR]}>
-                <Text>Description</Text>
-                <View style={UserProfileStyles.descriptionView}>
-                    <TextInput
-                        underlineColorAndroid='transparent'
-                        textAlignVertical='top'
-                        multiline = {true}
-                        numberOfLines = {8}
-                        editable
-                        maxLength={200}
-                    />
-                </View>
             </View>
         )
     }
@@ -100,6 +81,7 @@ const EmptyPhoto: React.FC = () => (
     <View style={UserProfileStyles.photoView}>
         <TouchableOpacity onPress={() => alert('test')} style={UserProfileStyles.photo}>
             <Text>Lorem Ipsum</Text>
+
         </TouchableOpacity>
     </View>
 )

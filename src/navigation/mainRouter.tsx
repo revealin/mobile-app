@@ -9,12 +9,15 @@ import { CreateAccountPage } from '../features/authentication/inscription';
 
 import { ModifyUserProfile } from '../features/userProfile/modifyUserProfile'; 
 
+import { SwipePage } from '../features/swipe/swipe';
+
 const MainRouter = createStackNavigator(
     {
         Main: AuthenticationPage,
         Connection: ConnexionAccountPage,
         Register: CreateAccountPage,
-        ModifyUserProfile: ModifyUserProfile
+        ModifyUserProfile: ModifyUserProfile,
+        Swipe: SwipePage
     },
     {
         initialRouteName: "Main"
