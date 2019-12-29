@@ -4,11 +4,16 @@ import LinearGradient from 'react-native-linear-gradient';
 import { ButtonGroup } from 'react-native-elements';
 import { Styles } from '../../styles/style';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
+import { NavigationStackProp } from 'react-navigation-stack';
+
+type NavigateProp = {
+    navigation: NavigationStackProp
+};
 
 /*
     CREATE ACCOUNT
 */
-export class CreateAccountPage extends Component {
+export class CreateAccountPage extends Component<NavigateProp> {
     static navigationOptions = {
         header: null
     };
@@ -28,7 +33,7 @@ const TitleInscription: React.FC = () => (
         <Text style={Styles.title}>REVEALIN</Text>           
     </View>
 )  
-const CreateBaseAccount: React.FC = () => (             
+const CreateBaseAccount: React.FC<NavigateProp> = (props) => (             
     <View style={Styles.flexThird}>
         <Text style={Styles.subTitle}>Créer votre compte</Text> 
 
@@ -66,14 +71,14 @@ const CreateBaseAccount: React.FC = () => (
             style={Styles.linearGradientButton}>
             <Text 
                 style={Styles.buttonText} 
-                onPress={() => navigate('Register')}>
+                onPress={() => props.navigation.navigate('Register')}>
                 Valider
             </Text>                    
         </LinearGradient>   
     </View>
 )
 
-const CreateProfilAccount: React.FC = () => (     
+const CreateProfilAccount: React.FC<NavigateProp> = (props) => (     
     <View style={Styles.flexThird}>
         <Text style={Styles.subTitle}>Personnalisez votre profil</Text> 
         <ButtonGroup
@@ -113,14 +118,14 @@ const CreateProfilAccount: React.FC = () => (
                 style={Styles.linearGradientButton}>
                 <Text 
                     style={Styles.buttonText} 
-                    onPress={() => navigate('Register')}>
+                    onPress={() => props.navigation.navigate('Register')}>
                     Suivant
                 </Text>                    
             </LinearGradient>      
     </View>
 )
 
-const CreatePictureAccount: React.FC = () => (  
+const CreatePictureAccount: React.FC<NavigateProp> = (props) => (  
     <View style={Styles.flexThird}>
         <Text style={Styles.subTitle}>A quoi ressembles-tu ?</Text> 
         <Image
@@ -133,12 +138,12 @@ const CreatePictureAccount: React.FC = () => (
                 style={Styles.linearGradientButton}>
                 <Text 
                     style={Styles.buttonText} 
-                    onPress={() => navigate('Register')}>
+                    onPress={() => props.navigation.navigate('Register')}>
                     Suivant
                 </Text>                    
             </LinearGradient> 
         <Text
-            onPress={() => this.props.navigation.navigate("Register")}
+            onPress={() => props.navigation.navigate("Register")}
             style={Styles.switchLink}
         >
             Me connecter

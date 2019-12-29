@@ -2,11 +2,16 @@ import React, { Component } from 'react';
 import { View, Text, TextInput, Button, Alert } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { Styles } from '../../styles/style';
+import { NavigationStackProp } from 'react-navigation-stack';
+
+type NavigateProp = {
+    navigation: NavigationStackProp
+};
 
 /*
     CONNEXION
 */
-export class ConnexionAccountPage extends Component {
+export class ConnexionAccountPage extends Component<NavigateProp> {
     static navigationOptions = {
         header: null
     };
@@ -29,7 +34,7 @@ const TitleConnexion: React.FC = () => (
     </View>
 )  
 
-const ConnexionAccount: React.FC = () => (  
+const ConnexionAccount: React.FC<NavigateProp> = (props) => (  
     <>            
         <View style={Styles.flexThird}>
             
@@ -56,7 +61,7 @@ const ConnexionAccount: React.FC = () => (
                 style={Styles.linearGradientButton}>
                 <Text 
                     style={Styles.buttonText} 
-                    onPress={() => navigate('Register')}>
+                    onPress={() => props.navigation.navigate('Register')}>
                     Valider
                 </Text>                    
             </LinearGradient>   
