@@ -8,6 +8,8 @@ import { colors } from 'react-native-elements';
 import { User } from '../../models/User';
 import { Pictures } from '../../models/Pictures';
 
+
+/** Types declaration for props */
 type UserDesc = {
     description: string;
     saveDesc: Function
@@ -84,12 +86,12 @@ export class ModifyUserProfile extends Component {
     };
 
     saveDesc(description: string) {
-        // Test description and put in the state
-
+        // Assign description on onChange event
         this.description = description;
     };
 
     addPhoto = async () => {
+        // Launch ImagePicker to add a photo
         ImagePicker.showImagePicker(options, (response) => {
             if (response.error) {
                 Alert.alert("Une erreur est survenue : " + response.error );
@@ -104,6 +106,8 @@ export class ModifyUserProfile extends Component {
     };
 
     deletePhoto = (order: number) => {
+        // Fetch api to delete a picture
+
         let newPhotos = deletePhoto(this.state.photos, order);
 
         this.setState({
@@ -258,6 +262,7 @@ const deletePhoto = (photos: Array<Pictures>, order: number): Array<Pictures> =>
     // Check order 
     let loopOrder = order;
 
+    // Re organize the pictures array
     for (let i = 0; i < photos.length; i++) {
         if (loopOrder < 3 ) {
             photos[(loopOrder - 1)] = {
