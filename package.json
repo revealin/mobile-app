@@ -17,10 +17,12 @@
     "react-native-drawer-layout": "^2.0.0",
     "react-native-elements": "^1.2.7",
     "react-native-gesture-handler": "^1.5.2",
+    "react-native-image-picker": "^1.1.0",
+    "react-native-ionicons": "^4.6.3",
+    "react-native-linear-gradient": "^2.5.6",
     "react-native-vector-icons": "^6.6.0",
     "react-navigation": "^4.0.10",
-    "react-navigation-stack": "^1.10.3",
-    "react-native-linear-gradient": "^2.5.6"
+    "react-navigation-stack": "^1.10.3"
   },
   "devDependencies": {
     "@babel/core": "^7.7.7",

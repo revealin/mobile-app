@@ -80,17 +80,6 @@ export const Styles = StyleSheet.create({
         color: 'blue',
         textDecorationLine: 'underline'
     },
-    descriptionView: {
-        marginTop: 10,
-        height: 130,
-        borderWidth: 0,
-        elevation: 1,
-        borderRadius: 5
-    },
-    description: {
-        flex: 3,
-        elevation: 3
-    },
     paddingLR: {
         paddingLeft: 30,
         paddingRight: 30 
