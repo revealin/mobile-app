@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, TouchableOpacity } from 'react-native';
 import { ButtonGroup, Overlay, colors } from 'react-native-elements';
 import Slider from '@react-native-community/slider';
 
 import { SwipeStyles } from '../../styles/swipe/style';
 import { TextInput } from 'react-native-gesture-handler';
+import Icon from 'react-native-ionicons';
 
 type DescProps = {
     description: string
@@ -51,10 +52,6 @@ let yesNoBtns = [
 ];
 
 export class SwipePage extends Component {
-    static navigationOptions = {
-        title: "Page de Swipes",
-        header: null
-    };
 
     state = {
         overlayIsVisible: false,
@@ -113,12 +110,23 @@ export class SwipePage extends Component {
     }
 }
 
-const Search: React.FC<overlayFctProps> = (props) => (
-    <View style={SwipeStyles.searchMenu}>
-        <Text
-            style={SwipeStyles.searchTitle}
-            onPress={() => props.toggleOverlay()}
-        >Critères de recherche</Text>
+const Search: React.FC<overlayFctProps> = (props) => (  
+     <View style={SwipeStyles.searchMenu}>
+        <View style={SwipeStyles.subSearchView}>
+            <Text style={SwipeStyles.searchTitle}>
+                Critères de recherche
+            </Text>
+            <TouchableOpacity
+                style={SwipeStyles.searchIcon}
+                onPress={() => props.toggleOverlay()}
+            >
+                <Icon
+                    name="search"
+                    size={40}
+                    color={colors.success}
+                /> 
+            </TouchableOpacity>
+        </View>
     </View>
 );
 
@@ -143,7 +151,7 @@ class CustomOverlay extends Component<customOverlayProps> {
         if (gendersCriterias.buttons[genderIndex]) {
             this.setState({
                 genderIndex: genderIndex
-            })
+            });
         }
     };
 

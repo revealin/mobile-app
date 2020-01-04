@@ -1,18 +1,12 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, Button, Alert, CheckBox, Image } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import { ButtonGroup } from 'react-native-elements';
 import { Styles } from '../../styles/style';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 /*
     CREATE ACCOUNT
 */
 export class ChatPage extends Component {
-    static navigationOptions = {
-        header: null
-    };
-
     render() {
         return (            
             <View style={Styles.body}>

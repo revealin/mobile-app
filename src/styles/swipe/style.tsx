@@ -10,12 +10,23 @@ export const SwipeStyles = StyleSheet.create({
         paddingBottom: 10
     },
     searchMenu: {
-        flex: 1
+        flex: 1,
+        borderWidth: 1,
+        borderColor: "black"
     },
     searchTitle: {
-        textAlign: "right",
         fontSize: 18,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        marginRight: 15
+    },
+    subSearchView: {
+        flexDirection: "row",
+        justifyContent: "flex-end",
+        alignItems: "center"
+    },
+    searchIcon: {
+        marginRight: 10,
+        marginTop: 5
     },
     swipe: {
         flex: 10,

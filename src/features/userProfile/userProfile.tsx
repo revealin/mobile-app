@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Button } from 'react-native';
+import { NavigationStackProp } from 'react-navigation-stack';
 
-export class UserProfile extends Component {
-    static navigationOptions = {
-        title: "Profil utilisateur",
-        header: null
-    };
+type NavigateProp = {
+    navigation: NavigationStackProp
+};
 
+export class UserProfile extends Component<NavigateProp> {
     render() {
         return (
             <View>
-                
+                <Button
+                    title="Modifier mon profil"
+                    onPress={() => this.props.navigation.navigate("ModifyUserProfile")}
+                />
             </View>
         )
     }
