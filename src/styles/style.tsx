@@ -43,6 +43,24 @@ export const Styles = StyleSheet.create({
       fontSize: 24,
       fontWeight: 'bold',
     },
+    chatTitle: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      fontFamily: 'Roboto',
+      fontSize: 30,
+      // fontWeight: 'bold',
+      color: '#bf78b2',
+      marginBottom: 25         
+    },
+    matchTitle: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      fontFamily: 'Roboto',
+      fontSize: 30,
+      // fontWeight: 'bold',
+      color: '#bf78b2',
+      marginBottom: 25         
+    },
     label: {
        marginLeft: 10,
         fontSize: 20,
@@ -59,6 +77,9 @@ export const Styles = StyleSheet.create({
         borderBottomColor: '#737373',
         borderBottomWidth: StyleSheet.hairlineWidth
       },
+      linearGradienText: {
+        borderRadius: 4
+      },
       linearGradientButton: {
         paddingLeft: 15,
         paddingRight: 15
@@ -71,6 +92,13 @@ export const Styles = StyleSheet.create({
         fontSize: 18,
         fontFamily: 'Gill Sans',
         textAlign: 'center',
+        margin: 10,
+        color: '#ffffff',
+        backgroundColor: 'transparent'
+      },
+      messageText: {
+        fontSize: 18,
+        fontFamily: 'Gill Sans',
         margin: 10,
         color: '#ffffff',
         backgroundColor: 'transparent'
