@@ -144,7 +144,7 @@ const MainRouter = createStackNavigator(
         }
     },
     {
-        initialRouteName: "ChatPage",
+        initialRouteName: "Main",
         transitionConfig: () => fromRight(),
     }
 );
