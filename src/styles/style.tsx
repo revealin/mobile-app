@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { Colors} from 'react-native/Libraries/NewAppScreen';
+import { colors } from 'react-native-elements';
 
 export const Styles = StyleSheet.create({    
     body: {                 
@@ -112,4 +113,31 @@ export const Styles = StyleSheet.create({
         paddingLeft: 30,
         paddingRight: 30 
     },
+    headerLeft: {
+      flex: 1,
+      marginLeft: 20,
+      color: colors.success
+    },
+    headerMid: {
+      flex: 1,
+      textAlign: "center",
+      color: "#abe28e",
+      fontWeight: "bold",
+      fontSize: 24
+    },
+    headerRight: {
+      flex: 1,
+      marginRight: 20
+    },
+    headerBackTitleStyle: {
+      color: "#abe28e",
+      marginLeft: 10,
+      fontWeight: "bold",
+      fontSize: 18
+    },
+    headerBack: {
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "center"
+    }
 });

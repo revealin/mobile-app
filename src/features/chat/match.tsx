@@ -9,10 +9,6 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
     CREATE ACCOUNT
 */
 export class MatchPage extends Component {
-    static navigationOptions = {
-        header: null
-    };
-
     render() {
         return (            
             <View style={Styles.body}>

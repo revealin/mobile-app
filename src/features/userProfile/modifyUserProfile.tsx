@@ -46,10 +46,6 @@ const options = {
 };
 
 export class ModifyUserProfile extends Component {
-    static navigationOptions = {
-        title: "Modifier mon profil",
-    };
-
     description: string = '';
 
     state = {

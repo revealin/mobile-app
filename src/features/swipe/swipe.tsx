@@ -51,10 +51,6 @@ let yesNoBtns = [
 ];
 
 export class SwipePage extends Component {
-    static navigationOptions = {
-        title: "Page de Swipes",
-        header: null
-    };
 
     state = {
         overlayIsVisible: false,
