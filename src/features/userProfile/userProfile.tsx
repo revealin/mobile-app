@@ -10,8 +10,8 @@ export class UserProfile extends Component<NavigateProp> {
     render() {
         return (
             <View>
-                <Button 
-                    title="test"
+                <Button
+                    title="Modifier mon profil"
                     onPress={() => this.props.navigation.navigate("ModifyUserProfile")}
                 />
             </View>

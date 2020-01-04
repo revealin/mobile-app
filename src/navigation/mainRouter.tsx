@@ -13,6 +13,7 @@ import { ModifyUserProfile } from '../features/userProfile/modifyUserProfile';
 import { SwipePage } from '../features/swipe/swipe';
 import { MatchPage } from '../features/chat/match';
 import { UserProfile } from '../features/userProfile/userProfile';
+import { ChatPage } from '../features/chat/chat';
 
 import { HeaderIcon } from './headerIcon';
 
@@ -115,18 +116,35 @@ const MainRouter = createStackNavigator(
                             iconName="arrow-round-back"
                             navigation={navigation}
                             pageLink="UserProfile"
-                            back={true}
                         />
-                        <Text style= {Styles.headerBackTitleStyle}>
+                        <Text style={Styles.headerBackTitleStyle}>
                             Profil
                         </Text>
                     </View>
                 ),
             }),
         },
+        ChatPage: {
+            screen: ChatPage,
+            navigationOptions: ({ navigation }) => ({
+                headerLeftContainerStyle: Styles.headerLeft,
+                headerLeft: () => (
+                    <View style={Styles.headerBack}>
+                        <HeaderIcon
+                            iconName="arrow-round-back"
+                            navigation={navigation}
+                            pageLink="MatchPage"
+                        />
+                        <Text style={Styles.headerBackTitleStyle}>
+                            Matchs
+                        </Text>
+                    </View>
+                ),
+            }),
+        }
     },
     {
-        initialRouteName: "Main",
+        initialRouteName: "ChatPage",
         transitionConfig: () => fromRight(),
     }
 );
