@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
-import { View, Text, Button, TouchableOpacity, FlatList, Image, TextInput, Alert } from 'react-native';
+import { View, Text, Button, TouchableOpacity, ActivityIndicator, Image, TextInput, Alert } from 'react-native';
 import Icon from 'react-native-ionicons';
 import ImagePicker from 'react-native-image-picker';
+import ImageResizer from 'react-native-image-resizer';
+import RNFS from 'react-native-fs'
+import Spinner from 'react-native-loading-spinner-overlay';
 
 import { UserProfileStyles } from '../../styles/userProfile/style';
 import { colors } from 'react-native-elements';
 import { User } from '../../models/User';
 import { Pictures } from '../../models/Pictures';
+import { NavigationStackProp } from 'react-navigation-stack';
+import { postPicture, deletePicture, updateDesc } from '../../core/http/userHttpService';
 
+type Navigateprop = {
+    navigation: NavigationStackProp
+};
 
 /** Types declaration for props */
 type UserDesc = {
@@ -20,8 +28,7 @@ type Photos = {
 };
 
 type SinglePhoto = {
-    base64: string,
-    order: number
+    photo: Pictures
 };
 
 type PhotosFcts = {
@@ -45,45 +52,32 @@ const options = {
     },
 };
 
-export class ModifyUserProfile extends Component {
-    description: string = '';
-
+export class ModifyUserProfile extends Component<Navigateprop> {
     state = {
+        user: {},
+        userId: '',
         description: '',
-        photos: []
+        photos: [],
+        spinner: false
     };
 
-    async componentDidMount() {
+    componentDidMount() {
         // Fetch API with userId to retrieve user informations
-        let newUser = new User(
-            'test@test.test',
-            'Jean Kevin',
-            'vLorem Ipsum rfbrebrbrekre',
-            [
-                {
-                    base64: "",
-                    order: 1
-                },
-                {
-                    base64: "",
-                    order: 2
-                },
-                {
-                    base64:"",
-                    order: 3
-                },
-            ]
-        );
+        let user: User = this.props.navigation.getParam("user");
+
         // Then, put in state
         this.setState({
-            description: newUser.description,
-            photos: newUser.pictures
+            userId: user._id,
+            description: user.description,
+            photos: user.pictures
         });
     };
 
-    saveDesc(description: string) {
+    saveDesc = (description: string) => {
         // Assign description on onChange event
-        this.description = description;
+        this.setState({
+            description: description
+        })
     };
 
     addPhoto = async () => {
@@ -92,37 +86,101 @@ export class ModifyUserProfile extends Component {
             if (response.error) {
                 Alert.alert("Une erreur est survenue : " + response.error );
             } else if (response.data) {
-                let newPhotos = addNewPhoto(this.state.photos, response.data);
-
                 this.setState({
-                    photos: newPhotos
-                });                
+                    spinner: true
+                });
+        
+                response.data =  `data:image/jpeg;base64,${response.data}`
+                ImageResizer.createResizedImage(
+                    response.data,
+                    100,
+                    200,
+                    "JPEG",
+                    100
+                ).then(async response => {
+                    let base64 = await RNFS.readFile(response.path, "base64");
+                    base64 = `data:image/jpeg;base64,${base64}`;
+                    postPicture(
+                        this.state.userId,
+                        base64,
+                        ((pictureId: string) => {
+                            let newPhotos = addNewPhoto(this.state.photos, base64, pictureId);
+                            this.setState({
+                                photos: newPhotos,
+                                spinner: false
+                            });
+                        }),
+                        ((error: any) => {
+                            this.setState({
+                                spinner: false
+                            });
+                            Alert.alert(error)
+                        })
+                )});                
             }
         });
     };
 
-    deletePhoto = (order: number) => {
-        // Fetch api to delete a picture
-
-        let newPhotos = deletePhoto(this.state.photos, order);
-
+    deletePhoto = (order: number, pictureId: string) => {
         this.setState({
-            photos: newPhotos
+            spinner: true
         });
+        // Fetch api to delete a picture
+        deletePicture(
+            pictureId,
+            this.state.userId,
+            () => {
+                let newPhotos = deletePhoto(this.state.photos, order);
+
+                this.setState({
+                    photos: newPhotos,
+                    spinner: false
+                });
+            },
+            (error: any) => {
+                Alert.alert(error)
+                this.setState({
+                    spinner: false
+                });
+            }
+        )
     };
 
     saveProfile = () => {
         // Fetch API to update the user with state values
+        this.setState({
+            isLoading: true
+        });
 
-        // Fetch to update description
-
-        // Fetch to update pictures 
-            // then navigate to swipe page
+        updateDesc(
+            this.state.description,
+            this.state.userId,
+            () => {
+                this.setState({
+                    isLoading: false
+                });
+                this.props.navigation.navigate("UserProfile", {
+                    back: true
+                });
+            },
+            () => {
+                this.setState({
+                    isLoading: false
+                });
+                Alert.alert("Server error")
+            }
+        );
     }
 
     render() {
         return (
             <View style={UserProfileStyles.body}>
+                <Spinner
+                    visible={this.state.spinner}
+                    textContent={'Chargement...'}
+                    overlayColor={"rgba(0, 0, 0 , 0.60)"}
+                    textStyle={{color: "white"}}
+                />
                 <DescriptionComponent
                     description={this.state.description}
                     saveDesc={this.saveDesc}
@@ -162,25 +220,10 @@ const DescriptionComponent: React.FC<UserDesc> = (props) => (
 const Photos: React.FC<Photos & PhotosFcts> = (props) => (
     <View style={[UserProfileStyles.photos, UserProfileStyles.paddingLR]}>
         <Text style={ UserProfileStyles.photoTitle }>Photos</Text>
-        <View>
-            <FlatList
-                style={UserProfileStyles.photosList}
-                numColumns={3}
-                data={props.photos}
-                initialNumToRender={3}
-                renderItem={({ item }) => {
-                    if (item.base64 && typeof item.base64 === 'string') {
-                    return <DisplayPhotos  base64={item.base64} 
-                        order={item.order}
-                        addPhoto={props.addPhoto}
-                        deletePhoto={props.deletePhoto} />
-                    } else {
-                        return <EmptyPhoto addPhoto={props.addPhoto}
-                        deletePhoto={props.deletePhoto} />
-                    }
-                }}
-                keyExtractor={item => item.base64}
-            />
+        <View style={UserProfileStyles.photosContainer}>
+            {checkPhotos(props.photos[0], props.addPhoto, props.deletePhoto)}
+            {checkPhotos(props.photos[1], props.addPhoto, props.deletePhoto)}
+            {checkPhotos(props.photos[2], props.addPhoto, props.deletePhoto)}
         </View>
     </View>
 );
@@ -225,13 +268,13 @@ const DisplayPhotos: React.FC<SinglePhoto & PhotosFcts> = (props) => (
     <View style={UserProfileStyles.photoView}>
         <Image
             style={UserProfileStyles.photo}
-            source={{ uri: props.base64 }}
+            source={{ uri: props.photo.base64 }}
         />
-        
+
         <TouchableOpacity
             style={UserProfileStyles.deleteIcon}
-            onPress={() => props.deletePhoto(props.order)}
-        >  
+            onPress={() => props.deletePhoto(props.photo.order, props.photo._id)}
+        >
             <Icon 
                 android="md-close"
                 ios="ios-close"
@@ -240,40 +283,51 @@ const DisplayPhotos: React.FC<SinglePhoto & PhotosFcts> = (props) => (
             />
         </TouchableOpacity>        
     </View>
-)
+);
 
-const addNewPhoto = (photos: Array<Pictures>, base64: string): Array<Pictures> => {
+const checkPhotos = (
+    photo: Pictures | null,
+    addPhoto: Function,
+    deletePhoto: Function
+    ) => {
+    if (!photo) {
+        return <EmptyPhoto addPhoto={addPhoto} deletePhoto={deletePhoto}/>
+    } else {
+        return <DisplayPhotos
+            photo={photo}
+            addPhoto={addPhoto}
+            deletePhoto={deletePhoto}
+            />
+    }
+};
 
-    for (let i = 0; i < photos.length; i++) {
-        if (photos[i].base64 == "") {
-            photos[i].base64 = `data:image/jpeg;base64,${base64}`;
-            photos[i].order = (i + 1);
-            break
+const addNewPhoto = (photos: Array<Pictures>, base64: string, pictureId: string): Array<Pictures> => {
+
+    for(let i = 0; i < 3; i++) {
+        if (!photos[i]) {
+            photos.push({
+                _id: pictureId,
+                base64: base64,
+                order: i
+            });
+            break;
         }
     }
     return photos;
 };
 
 const deletePhoto = (photos: Array<Pictures>, order: number): Array<Pictures> => {
-    // Check order 
-    let loopOrder = order;
 
-    // Re organize the pictures array
-    for (let i = 0; i < photos.length; i++) {
-        if (loopOrder < 3 ) {
-            photos[(loopOrder - 1)] = {
-                ...photos[loopOrder],
-                order: loopOrder
-            }
-        } else if (loopOrder === 3) {
-            photos[2] = {
-                base64: "",
-                order: loopOrder
-            }
-        }
-
-        loopOrder++;
+    if (photos.length === 1 && order === 0) {
+        photos = [];
+    } else {
+        photos.splice(order, 1);
     };
 
+    for (let i = 0; i < photos.length; i++) {
+        if (i >= order) {
+            photos[i].order = (photos[i].order - 1);
+        }
+    };
     return photos;
 }

@@ -28,6 +28,7 @@ export const UserProfileStyles = StyleSheet.create({
     },
     photos: {
         flex: 4,
+        marginBottom: 20
     },
     report: {
         paddingRight: 10,
@@ -79,5 +80,20 @@ export const UserProfileStyles = StyleSheet.create({
         paddingRight: 10,
         paddingLeft: 10,
         marginBottom: 15
-    }
+    },
+    profileInfosList: {
+        opacity: 0.4,
+        flexDirection: "row",
+        justifyContent: "space-between",
+        marginLeft: 40,
+        marginRight: 40
+    },
+    profileInfosText: {
+        fontSize: 19
+    },
+    photosContainer: {
+        flexDirection: "row",
+        // justifyContent: "space-around"
+        justifyContent: "space-between",
+    },
 });

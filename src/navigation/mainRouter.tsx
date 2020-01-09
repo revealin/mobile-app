@@ -14,11 +14,15 @@ import { SwipePage } from '../features/swipe/swipe';
 import { MatchPage } from '../features/chat/match';
 import { UserProfile } from '../features/userProfile/userProfile';
 import { ChatPage } from '../features/chat/chat';
+import { AuthLoadingScreen } from '../features/authentication/authLoadingScreen';
 
 import { HeaderIcon } from './headerIcon';
 
 const MainRouter = createStackNavigator(
     {
+        AuthLoading: {
+            screen: AuthLoadingScreen
+        },
         Main: {
             screen: AuthenticationPage,
             navigationOptions: {
@@ -86,7 +90,7 @@ const MainRouter = createStackNavigator(
         UserProfile: {
             screen: UserProfile,
             navigationOptions: ({ navigation }) => ({
-                headerBackTitle: "Profil",
+                headerTitle: "Profil",
                 headerLeftContainerStyle: Styles.headerLeft,
                 headerRightContainerStyle: Styles.headerRight,
                 headerLeft: () => (
@@ -144,7 +148,7 @@ const MainRouter = createStackNavigator(
         }
     },
     {
-        initialRouteName: "Main",
+        initialRouteName: "AuthLoading",
         transitionConfig: () => fromRight(),
     }
 );

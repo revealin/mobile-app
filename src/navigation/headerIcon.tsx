@@ -13,7 +13,19 @@ type HeaderIconProp = {
 
 export const HeaderIcon: React.FC<HeaderIconProp> = (props) => (
     <TouchableOpacity
-        onPress={() => (props.pageLink ? props.navigation.navigate(props.pageLink) : props.navigation.goBack())}
+        onPress={() => {
+            if (props.pageLink) {
+                if (props.pageLink === "UserProfile") {
+                    props.navigation.navigate("UserProfile", {
+                        userId: null
+                    })
+                } else {
+                    props.navigation.navigate(props.pageLink)
+                }
+            } else {
+                props.navigation.goBack()
+            }            
+        }}
     >
         <Icon
             name={props.iconName}

@@ -14,10 +14,6 @@ type NavigateProp = {
     CREATE ACCOUNT
 */
 export class CreateAccountPage extends Component<NavigateProp> {
-    static navigationOptions = {
-        header: null
-    };
-
     render() {
         return (            
             <View style={Styles.body}>
