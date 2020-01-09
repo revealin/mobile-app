@@ -1,0 +1,4 @@
+{
+    "api_url": "http://downstacks.com:8080",
+    "token_storage_key": "jwt_token"
+}

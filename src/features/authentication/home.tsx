@@ -12,10 +12,6 @@ type NavigateProp = {
     CONNEXION || INSCRIPTION
 */
 export class AuthenticationPage extends Component<NavigateProp> {
-    static navigationOptions = {
-        header: null
-    };
-
     render() {
         return (
             <View style={Styles.body}>
