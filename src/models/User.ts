@@ -2,7 +2,8 @@ import { Pictures } from './Pictures';
 
 export class User {
 
-    /*constructor(
+    constructor(
+        _id: string = '',
         email: string, 
         name: string,
         password: string,
@@ -12,6 +13,7 @@ export class User {
         description: string,
         pictures: Array<Pictures>
     ) {
+        this._id = _id,
         this.email = email;
         this.name = name;
         this.password = password;
@@ -20,10 +22,10 @@ export class User {
         this.birth = birth;
         this.description = description;
         this.pictures = pictures;
-    };*/
+    };
 
     // Dev constructor
-    constructor(
+    /*constructor(
         email: string, 
         name: string,
         description: string,
@@ -33,14 +35,15 @@ export class User {
         this.name = name;
         this.description = description;
         this.pictures = pictures
-    };
+    };*/
 
+    _id: string,
     email: string;
     name: string;
-    /*password: string;
+    password: string;
     role: string;
     gender: 'male' | 'female';
-    birth: Date;*/
+    birth: Date;
     description: string;
     pictures: Array<Pictures>;
 };

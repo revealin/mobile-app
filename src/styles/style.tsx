@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { Colors} from 'react-native/Libraries/NewAppScreen';
+import { colors } from 'react-native-elements';
 
 export const Styles = StyleSheet.create({    
     body: {                 
@@ -62,10 +63,10 @@ export const Styles = StyleSheet.create({
       marginBottom: 25         
     },
     label: {
-       marginLeft: 10,
-        fontSize: 20,
-        fontWeight: '400',
-        color: '#bf78b2'
+      marginLeft: 10,
+      fontSize: 20,
+      fontWeight: '400',
+      color: '#bf78b2'
     },
     input: {
       height: 40, 
@@ -73,43 +74,69 @@ export const Styles = StyleSheet.create({
       borderWidth: 1
     },
     separator: {
-        marginVertical: 25,
-        borderBottomColor: '#737373',
-        borderBottomWidth: StyleSheet.hairlineWidth
-      },
-      linearGradienText: {
-        borderRadius: 4
-      },
-      linearGradientButton: {
-        paddingLeft: 15,
-        paddingRight: 15
-        // borderRadius: 0
-      },
-      linearGradientIcon: {
-        borderRadius: 100
-      },
-      buttonText: {
-        fontSize: 18,
-        fontFamily: 'Gill Sans',
-        textAlign: 'center',
-        margin: 10,
-        color: '#ffffff',
-        backgroundColor: 'transparent'
-      },
-      messageText: {
-        fontSize: 18,
-        fontFamily: 'Gill Sans',
-        margin: 10,
-        color: '#ffffff',
-        backgroundColor: 'transparent'
-      },
+      marginVertical: 25,
+      borderBottomColor: '#737373',
+      borderBottomWidth: StyleSheet.hairlineWidth
+    },
+    linearGradienText: {
+      borderRadius: 4
+    },
+    linearGradientButton: {
+      paddingLeft: 15,
+      paddingRight: 15
+    },
+    linearGradientIcon: {
+      borderRadius: 100
+    },
+    buttonText: {
+      fontSize: 18,
+      fontFamily: 'Gill Sans',
+      textAlign: 'center',
+      margin: 10,
+      color: '#ffffff',
+      backgroundColor: 'transparent'
+    },
+    messageText: {
+      fontSize: 18,
+      fontFamily: 'Gill Sans',
+      margin: 10,
+      color: '#ffffff',
+      backgroundColor: 'transparent'
+    },
     switchLink: {
         marginTop: 15,
         color: 'blue',
-        textDecorationLine: 'underline'
+        textDecorationLine: 'underline',
     },
     paddingLR: {
-        paddingLeft: 30,
-        paddingRight: 30 
+      paddingLeft: 30,
+      paddingRight: 30 
     },
+    headerLeft: {
+      flex: 1,
+      marginLeft: 20,
+      color: colors.success
+    },
+    headerMid: {
+      flex: 1,
+      textAlign: "center",
+      color: "#abe28e",
+      fontWeight: "bold",
+      fontSize: 24
+    },
+    headerRight: {
+      flex: 1,
+      marginRight: 20
+    },
+    headerBackTitleStyle: {
+      color: "#abe28e",
+      marginLeft: 10,
+      fontWeight: "bold",
+      fontSize: 18
+    },
+    headerBack: {
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "center"
+    }
 });

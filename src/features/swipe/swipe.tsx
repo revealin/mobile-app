@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, TouchableOpacity } from 'react-native';
 import { ButtonGroup, Overlay, colors } from 'react-native-elements';
 import Slider from '@react-native-community/slider';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 import { SwipeStyles } from '../../styles/swipe/style';
 import { TextInput } from 'react-native-gesture-handler';
+import Icon from 'react-native-ionicons';
+import { getAll } from '../../core/http/userHttpService';
+import { User } from '../../models/User.js';
 
 type DescProps = {
     description: string
@@ -20,7 +24,6 @@ type YesNoProps = {
 };
 
 type UserProps = {
-    // user: User; 
     description: string,
     name: string,
     age: number,
@@ -51,18 +54,17 @@ let yesNoBtns = [
 ];
 
 export class SwipePage extends Component {
-    static navigationOptions = {
-        title: "Page de Swipes",
-        header: null
-    };
-
     state = {
         overlayIsVisible: false,
+        userIndex: 0,
+        users: [{}],
+        spinner: false,
         proposedUser: {
             description: "default",
-            name: "default",
+            name: "Tom",
             age: 18
-        }
+        },
+        age: 18
     };
 
     toggleOverlay = () => {
@@ -76,26 +78,59 @@ export class SwipePage extends Component {
         this.toggleOverlay();
     }
 
-    yesNoChoice(index: number) {
+    yesNoChoice = (index: number) => {
         if (yesNoBtns[index]) {
             // FETCH API
+            if (this.state.userIndex === (this.state.users.length - 1)) {
+                this.setState({
+                    proposedUser: this.state.users[0],
+                    userIndex: 0,
+                    age: returnAge(this.state.users[this.state.userIndex].birth)
+                });
+            } else {
+                this.setState({
+                    proposedUser: this.state.users[(this.state.userIndex + 1)],
+                    userIndex: (this.state.userIndex + 1),
+                    age: returnAge(this.state.users[this.state.userIndex].birth)
+                })
+            }
         }
     }
 
-    async componentDidMount() {
-        // Fetch API and define proposedUser value in the state
+    componentDidMount = async () => {
         this.setState({
-            proposedUser: {
-                description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in tempor sapien, quis hendrerit ante. Aliquam ullamcorper odio vitae leo maximus elementum. Etiam diam turpis, viverra eget hendrerit et, auctor ultrices augue. Praesent vitae ipsum hendrerit, bibendum leo ut, viverra nunc",
-                name: "Prénom",
-                age: 19
-            }
+            spinner: true
         })
+        // Fetch API and define proposedUser value in the state
+        getAll(
+            ((userList: Array<User>) => {
+                this.setState({
+                    proposedUser: userList[this.state.userIndex],
+                    users: userList,
+                    age: returnAge(userList[this.state.userIndex].birth)
+                });
+                this.setState({
+                    spinner: false
+                })
+            }),
+            (error:any) => {
+                this.setState({
+                    spinner: false
+                })
+                console.log(error)
+            }
+        )
     };
 
     render() {
         return (
             <View style={SwipeStyles.body}>
+                <Spinner
+                    visible={this.state.spinner}
+                    textContent={'Chargement...'}
+                    overlayColor={"rgba(0, 0, 0 , 0.60)"}
+                    textStyle={{color: "white"}}
+                />
                 <CustomOverlay 
                     isVisible={this.state.overlayIsVisible}
                     toggleOverlay={this.toggleOverlay}
@@ -107,18 +142,29 @@ export class SwipePage extends Component {
                     yesNoChoice={this.yesNoChoice}
                     description={this.state.proposedUser.description}
                     name={this.state.proposedUser.name}
-                    age={this.state.proposedUser.age}/>
+                    age={this.state.age}/>
             </View>
         )
     }
 }
 
-const Search: React.FC<overlayFctProps> = (props) => (
-    <View style={SwipeStyles.searchMenu}>
-        <Text
-            style={SwipeStyles.searchTitle}
-            onPress={() => props.toggleOverlay()}
-        >Critères de recherche</Text>
+const Search: React.FC<overlayFctProps> = (props) => (  
+     <View style={SwipeStyles.searchMenu}>
+        <View style={SwipeStyles.subSearchView}>
+            <Text style={SwipeStyles.searchTitle}>
+                Critères de recherche
+            </Text>
+            <TouchableOpacity
+                style={SwipeStyles.searchIcon}
+                onPress={() => props.toggleOverlay()}
+            >
+                <Icon
+                    name="search"
+                    size={40}
+                    color={colors.success}
+                /> 
+            </TouchableOpacity>
+        </View>
     </View>
 );
 
@@ -143,7 +189,7 @@ class CustomOverlay extends Component<customOverlayProps> {
         if (gendersCriterias.buttons[genderIndex]) {
             this.setState({
                 genderIndex: genderIndex
-            })
+            });
         }
     };
 
@@ -267,3 +313,10 @@ class YesNoChoice extends Component<YesNoProps> {
         )
     }
 }
+
+const returnAge = (birthdate: Date):number => {
+    birthdate = new Date(birthdate);
+    var diff = Date.now() - birthdate.getTime();
+    var age = new Date(diff); 
+    return Math.abs(age.getUTCFullYear() - 1970);
+};

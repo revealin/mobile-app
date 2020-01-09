@@ -64,10 +64,6 @@ const controleTextFirstName = (textValue: string):boolean => {
 
 // Principal component page
 export class CreateAccountPage extends Component<NavigateProp> {
-    static navigationOptions = {
-        header: null
-    };
-
     render() {
         return (            
             <View style={Styles.body}>
